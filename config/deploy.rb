@@ -9,7 +9,7 @@ require 'mina/git'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, 'ada-talent-app'
+set :application_name, 'talent-api'
 set :domain, '54.68.161.164'
 set :deploy_to, '/var/www/'
 set :repository, 'https://github.com/EzeGGonzalez/ada-talent.git'
