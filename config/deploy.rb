@@ -12,7 +12,7 @@ require 'mina/git'
 set :application_name, 'talent-api'
 set :domain, '54.68.161.164'
 set :deploy_to, '/var/www/talent'
-set :repository, 'https://github.com/EzeGGonzalez/ada-talent.git'
+set :repository, 'https://github.com/EzeGGonzalez/talent-api.git'
 set :branch, 'master'
 set :user, 'ada'
 set :shared_files, fetch(:shared_files, []).push('.env')
