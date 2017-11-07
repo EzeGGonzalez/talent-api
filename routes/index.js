@@ -40,6 +40,10 @@ exports = module.exports = function (app) {
 			res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 			next();
 	});
+
+	app.options('/api*', function(req, res) {
+		res.send(200);
+	});
 	
 	// Views
 	app.get('/', routes.views.index);
@@ -52,4 +56,6 @@ exports = module.exports = function (app) {
 	// API
 	app.get('/api/coders', routes.api.coder.list);
 	app.get('/api/coders/:id', routes.api.coder.get);
+
+	app.post('/api/jobs', routes.api.job.create);
 };
