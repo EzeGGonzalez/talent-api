@@ -10,8 +10,8 @@ var keystone = require('keystone');
 // and documentation.
 
 keystone.init({
-	'name': 'ada-api',
-	'brand': 'ada-api',
+	'name': 'ada',
+	'brand': 'ada',
 
 	'less': 'public',
 	'static': ['public', 'uploads'],
