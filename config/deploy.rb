@@ -15,7 +15,7 @@ set :deploy_to, '/var/www/talent'
 set :repository, 'https://github.com/EzeGGonzalez/talent-api.git'
 set :branch, 'master'
 set :user, 'ada'
-set :shared_dirs, fetch(:shared_dirs, []).push('node_modules', 'uploads')
+set :shared_dirs, fetch(:shared_dirs, []).push('uploads')
 set :shared_files, fetch(:shared_files, []).push('.env')
 set :keep_releases, 2
 
