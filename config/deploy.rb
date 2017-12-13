@@ -9,12 +9,12 @@ require 'mina/git'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, 'talent-api'
-set :domain, '54.68.161.164'
-set :deploy_to, '/var/www/talent'
+set :application_name, 'ada-api'
+set :domain, '45.55.244.118'
+set :deploy_to, '/var/www/ada'
 set :repository, 'https://github.com/EzeGGonzalez/talent-api.git'
 set :branch, 'master'
-set :user, 'ada'
+set :user, 'root'
 set :shared_dirs, fetch(:shared_dirs, []).push('uploads')
 set :shared_files, fetch(:shared_files, []).push('.env')
 set :keep_releases, 2
@@ -61,9 +61,9 @@ end
 task :npmbuild do
   in_path(fetch(:current_path)) do
     command %{npm install}
-    in_path("#{fetch(:current_path)}/node_modules/keystone") do
-      command %{npm run build-dev}
-    end
+    # in_path("#{fetch(:current_path)}/node_modules/keystone") do
+    #   command %{npm run build-dev}
+    # end
   end
 end
 
