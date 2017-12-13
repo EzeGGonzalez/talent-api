@@ -61,9 +61,9 @@ end
 task :npmbuild do
   in_path(fetch(:current_path)) do
     command %{npm install}
-    in_path("#{fetch(:current_path)}/node_modules/keystone") do
-      command %{npm run build-dev}
-    end
+    # in_path("#{fetch(:current_path)}/node_modules/keystone") do
+    #   command %{npm run build-dev}
+    # end
   end
 end
 
