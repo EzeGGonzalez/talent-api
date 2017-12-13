@@ -34,14 +34,14 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
-	app.use(function(req, res, next) { //allow cross origin requests
-			res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-			res.header("Access-Control-Allow-Origin", "*");
-			res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-			next();
+	app.use(function (req, res, next) { // allow cross origin requests
+		res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS, DELETE, GET');
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+		next();
 	});
 
-	app.options('/api*', function(req, res) {
+	app.options('/api*', function (req, res) {
 		res.send(200);
 	});
 	
@@ -56,6 +56,8 @@ exports = module.exports = function (app) {
 	// API
 	app.get('/api/coders', routes.api.coder.list);
 	app.get('/api/coders/:id', routes.api.coder.get);
+
+	app.post('/api/feedback', routes.api.coder.createFeedback);
 
 	app.post('/api/jobs', routes.api.job.create);
 };

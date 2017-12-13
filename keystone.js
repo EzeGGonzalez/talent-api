@@ -14,7 +14,7 @@ keystone.init({
 	'brand': 'ada-api',
 
 	'less': 'public',
-	'static': 'public',
+	'static': ['public', 'uploads'],
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'pug',
@@ -23,6 +23,8 @@ keystone.init({
 
 	'auto update': true,
 	'session': true,
+	'session store': 'mongo',
+	
 	'auth': true,
 	'user model': 'User',
 });
