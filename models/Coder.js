@@ -6,7 +6,8 @@ var Coder = new keystone.List('Coder')
 var storageResumeDoc = new keystone.Storage({
   adapter: keystone.Storage.Adapters.FS,
   fs: {
-    path: './data/resumes/doc'
+    path: keystone.expandPath('./uploads/resumes/doc'),
+    publicPath: '/resumes/doc'
   },
 });
 
