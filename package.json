@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "aphrodite": "^1.2.5",
     "async": "2.1.4",
     "connect-mongo": "^2.0.0",
     "dotenv": "4.0.0",
