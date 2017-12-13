@@ -3,22 +3,6 @@ var Types = keystone.Field.Types
 
 var Coder = new keystone.List('Coder')
 
-var storageResumeDoc = new keystone.Storage({
-  adapter: keystone.Storage.Adapters.FS,
-  fs: {
-    path: keystone.expandPath('./uploads/resumes/doc'),
-    publicPath: '/resumes/doc'
-  },
-});
-
-var storageResumePic = new keystone.Storage({
-  adapter: keystone.Storage.Adapters.FS,
-  fs: {
-    path: keystone.expandPath('./uploads/resumes/pic'),
-    publicPath: '/resumes/pic'
-  }
-});
-
 Coder.add({
   name: { type: Types.Name, required: true, index: true },
   email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
@@ -44,8 +28,8 @@ Coder.add({
   },
   english: { type: Types.Select, default: 'elemental', options: ['elemental', 'basic', 'intermediate', 'advanced'] },
   resume: {
-    doc: { type: Types.File, storage: storageResumeDoc },
-    pic: { type: Types.File, storage: storageResumePic }
+    doc: { type: Types.Url },
+    pic: { type: Types.CloudinaryImage }
   }
 })
 
