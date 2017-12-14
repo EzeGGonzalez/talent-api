@@ -14,4 +14,5 @@ Feedback.add({
   coder: { type: Types.Relationship, ref: 'Coder' }
 });
 
+Feedback.defaultColumns = 'company, coder, wouldContinue';
 Feedback.register()
