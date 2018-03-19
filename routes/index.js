@@ -21,6 +21,7 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
+var cors = require('cors');
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -34,17 +35,18 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
-	app.use(function (req, res, next) { // allow cross origin requests
-		res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS, DELETE, GET');
-		res.header('Access-Control-Allow-Origin', '*');
-		res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-		next();
-	});
+	app.use(
+		cors({
+			origin: ['http://localhost:8080', 'http://localhost:3000'],
+			methods:['GET','POST'],
+			credentials: true
+		})
+	);
 
 	app.options('/api*', function (req, res) {
-		res.send(200);
+		res.sendStatus(200);
 	});
-	
+
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/blog/:category?', routes.views.blog);
@@ -53,11 +55,16 @@ exports = module.exports = function (app) {
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 
+	// add an API endpoint for signing in _before_ your protected routes
+	app.post('/api/signin', routes.api.user.signin);
+	app.post('/api/signout', routes.api.user.signout);
+	app.get('/api/user', middleware.checkAuth, routes.api.user.get);
+
 	// API
-	app.get('/api/coders', routes.api.coder.list);
-	app.get('/api/coders/:id', routes.api.coder.get);
+	app.get('/api/coders', middleware.checkAuth, routes.api.coder.list);
+	app.get('/api/coders/:id', middleware.checkAuth, routes.api.coder.get);
 
-	app.post('/api/feedback', routes.api.coder.createFeedback);
+	app.post('/api/feedback', middleware.checkAuth, routes.api.coder.createFeedback);
 
-	app.post('/api/jobs', routes.api.job.create);
+	app.post('/api/jobs', middleware.checkAuth, routes.api.job.create);
 };
