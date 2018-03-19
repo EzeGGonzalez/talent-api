@@ -37,7 +37,7 @@ var routes = {
 exports = module.exports = function (app) {
 	app.use(
 		cors({
-			origin: ['http://localhost:8080', 'http://localhost:3000'],
+			origin: process.env.CORS_ORIGIN,
 			methods:['GET','POST'],
 			credentials: true
 		})
