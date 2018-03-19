@@ -53,3 +53,17 @@ exports.requireUser = function (req, res, next) {
 		next();
 	}
 };
+
+// also create some middleware that checks the current user
+
+// as long as you're using Keystone's session management, the user
+// will already be loaded if there is a valid current session
+
+exports.checkAuth = function (req, res, next) {
+  // you could check user permissions here too
+  if (req.user) {
+		next();
+	} else {
+		res.status(403).json({ 'error': 'no access' });
+	}
+}
